@@ -2,7 +2,7 @@
 
 (Forked from [etekcity_esf551_ble](https://github.com/ronnnnnnnnnnnnn/etekcity_esf551_ble)
 
-This package provides a basic unofficial interface for interacting with [Vitafit Body Fat Scale](https://www.amazon.ca/Vitafit-Analyzer-Weighing-Composition-Professional/dp/B09KLH3ZC1) (no affiliate link) using Bluetooth Low Energy (BLE). It allows you to easily connect to the scale, receive weight and impedance measurements, manage the display unit settings, and calculate various body metrics.
+This package provides a basic unofficial interface for interacting with [Vitafit Body Fat Scale](https://www.amazon.ca/Vitafit-Analyzer-Weighing-Composition-Professional/dp/B09KLH3ZC1) (no affiliate link) using Bluetooth Low Energy (BLE). It allows you to easily connect to the scale, receive weight ~~and impedance measurements, manage the display unit settings, and calculate various body metrics~~.
 
 It has only been tested on the Body Fat scale VT701 model. I have no idea whether it might also work with some other bluetooth bathroom scale models from Vitafit. If you try it with a different model, please let me know whether it works or not.
 
