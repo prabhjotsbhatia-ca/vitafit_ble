@@ -8,7 +8,7 @@ It has only been tested on the Body Fat scale VT701 model. I have no idea whethe
 
 **Disclaimer: This is an unofficial, community-developed library. It is not affiliated with, officially maintained by, or in any way officially connected with Vitafit, or any of their subsidiaries or affiliates. The official Vitafit website can be found at https://www.vitafit.com. The names "Vitafit" as well as related names, marks, emblems and images are registered trademarks of their respective owners.**
 
-[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)]()
+
 
 
 ## Installation
@@ -172,7 +172,7 @@ scan on
 
 If you find this unofficial project helpful, consider buying me a coffee! Your support helps maintain and improve this library.
 
-[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)]()
+
 
 
 ## License
