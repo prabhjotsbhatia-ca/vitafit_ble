@@ -42,7 +42,7 @@ async def main():
         print(f"Display Unit: {data.display_unit.name}")
         if IMPEDANCE_KEY in data.measurements:
             print(f"Impedance: {data.measurements[IMPEDANCE_KEY]} Ω")
-            
+
             # Calculate body metrics
             # Note: Replace with your actual height, age and sex
             body_metrics = BodyMetrics(
@@ -75,7 +75,7 @@ async def main():
 
 asyncio.run(main())
 ```
-For a real-life usage example of this library, check out the [Etekcity Fitness Scale BLE Integration for Home Assistant](https://github.com/ronnnnnnnnnnnnn/etekcity_fitness_scale_ble).
+TODO For a real-life usage example of this library, check out the [Etekcity Fitness Scale BLE Integration for Home Assistant](https://github.com/ronnnnnnnnnnnnn/etekcity_fitness_scale_ble). TODO
 
 
 ## API Reference

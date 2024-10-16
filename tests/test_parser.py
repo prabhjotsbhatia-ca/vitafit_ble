@@ -2,9 +2,9 @@ from unittest.mock import AsyncMock, Mock, patch
 
 import pytest
 
-from src.etekcity_esf551_ble.const import DISPLAY_UNIT_KEY, IMPEDANCE_KEY, WEIGHT_KEY
-from src.etekcity_esf551_ble.parser import (
-    EtekcitySmartFitnessScale,
+from src.vitafit_vt701_ble.const import DISPLAY_UNIT_KEY, IMPEDANCE_KEY, WEIGHT_KEY
+from src.vitafit_vt701_ble.parser import (
+    VitafitBodyFatScale,
     ScaleData,
     WeightUnit,
     parse,
@@ -14,7 +14,7 @@ from src.etekcity_esf551_ble.parser import (
 @pytest.mark.asyncio
 async def test_scale_initialization():
     callback = Mock()
-    scale = EtekcitySmartFitnessScale("00:11:22:33:44:55", callback)
+    scale = VitafitBodyFatScale("00:11:22:33:44:55", callback)
 
     assert scale.address == "00:11:22:33:44:55"
     assert scale._notification_callback == callback
@@ -25,7 +25,7 @@ async def test_scale_initialization():
 @pytest.mark.asyncio
 async def test_scale_notification_handler():
     callback = Mock()
-    scale = EtekcitySmartFitnessScale("00:11:22:33:44:55", callback)
+    scale = VitafitBodyFatScale("00:11:22:33:44:55", callback)
     scale._hw_version = "1.0"
     scale._sw_version = "2.0"
     mock_data = bytearray(
@@ -45,8 +45,8 @@ async def test_scale_notification_handler():
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("display_unit", [WeightUnit.KG, WeightUnit.LB, WeightUnit.ST])
-async def test_etekcity_scale_set_display_unit(display_unit):
-    scale = EtekcitySmartFitnessScale("00:11:22:33:44:55", Mock())
+async def test_vitafit_scale_set_display_unit(display_unit):
+    scale = VitafitBodyFatScale("00:11:22:33:44:55", Mock())
     scale.display_unit = display_unit
 
     assert scale._display_unit == display_unit
@@ -88,12 +88,12 @@ def test_parse(test_id, input_data, expected_output):
 @pytest.mark.asyncio
 async def test_scale_start_stop():
     with patch(
-        "src.etekcity_esf551_ble.parser.create_adv_receiver"
+        "src.vitafit_vt701_ble.parser.create_adv_receiver"
     ) as mock_create_adv_receiver:
         mock_scanner = AsyncMock()
         mock_create_adv_receiver.return_value = mock_scanner
 
-        scale = EtekcitySmartFitnessScale("00:11:22:33:44:55", Mock())
+        scale = VitafitBodyFatScale("00:11:22:33:44:55", Mock())
 
         await scale.async_start()
         mock_scanner.start.assert_called_once()
