@@ -53,21 +53,24 @@ class ScaleData:
 def parse(payload: bytearray) -> dict[str, int | float | None]:
     print(f"Payload: \n {payload}")
     if (
-        payload is not None
-        and len(payload) == 22
-        and payload[19] == 1
-        and payload[0:2] == b"\xa5\x02"
-        and payload[3:5] == b"\x10\x00"
-        and payload[6:10] == b"\x01\x61\xa1\x00"
+       payload is not None
+        and len(payload) == 12
+        and payload[4] == 0x02
     ):
         data = dict[str, int | float | None]()
-        weight = struct.unpack("<I", payload[10:13].ljust(4, b"\x00"))[0]
-        impedance = struct.unpack("<H", payload[13:15])[0]
-        data[DISPLAY_UNIT_KEY] = int(payload[21])
-        data[WEIGHT_KEY] = round(float(weight) / 1000, 2)
-        if payload[20] == 1:
-            if impedance := struct.unpack("<H", payload[13:15])[0]:
-                data[IMPEDANCE_KEY] = int(impedance)
+        # Extract weight from bytes 8-9 in big-endian format
+        weight = struct.unpack(">H", payload[8:10])[0]
+
+        # Assuming weight is in 100g units
+        data[WEIGHT_KEY] = round(float(weight) / 100, 2)
+
+        # weight = struct.unpack("<I", payload[10:13].ljust(4, b"\x00"))[0]
+        # impedance = struct.unpack("<H", payload[13:15])[0]
+        # data[DISPLAY_UNIT_KEY] = int(payload[21])
+        # data[WEIGHT_KEY] = round(float(weight) / 1000, 2)
+        # if payload[20] == 1:
+        #     if impedance := struct.unpack("<H", payload[13:15])[0]:
+        #         data[IMPEDANCE_KEY] = int(impedance)
         return data
     return None
 
