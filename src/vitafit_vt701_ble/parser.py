@@ -63,6 +63,7 @@ def parse(payload: bytearray) -> dict[str, int | float | None]:
 
         # Assuming weight is in 100g units
         data[WEIGHT_KEY] = round(float(weight) / 100, 2)
+        data[DISPLAY_UNIT_KEY] = 0
 
         # weight = struct.unpack("<I", payload[10:13].ljust(4, b"\x00"))[0]
         # impedance = struct.unpack("<H", payload[13:15])[0]
@@ -144,7 +145,10 @@ class VitafitBodyFatScale:
             device.hw_version = self.hw_version
             device.sw_version = self.sw_version
             _LOGGER.debug("%s (%s): %s", name, address, data)
-            device.display_unit = WeightUnit(data.pop(DISPLAY_UNIT_KEY))
+            if DISPLAY_UNIT_KEY in data:
+                device.display_unit = WeightUnit(data.pop(DISPLAY_UNIT_KEY))
+            else:
+                device.display_unit = WeightUnit.KG
 
             if self._display_unit == None:
                 self._display_unit = device.display_unit

@@ -163,3 +163,4 @@ cython_debug/
 src/.DS_Store
 .DS_Store
 .vscode/settings.json
+repopack-output.txt
