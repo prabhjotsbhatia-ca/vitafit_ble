@@ -40,7 +40,7 @@ async def test_scale_notification_handler():
     assert called_scale_info.hw_version == "1.0"
     assert called_scale_info.sw_version == "2.0"
     assert called_scale_info.display_unit == WeightUnit.KG
-    assert called_scale_info.measurements["weight"] == 1.0
+    assert called_scale_info.measurements["weight"] == 93.85
 
 
 @pytest.mark.asyncio
@@ -75,7 +75,7 @@ async def test_vitafit_scale_set_display_unit(display_unit):
             bytearray(
                 b"\x5A\x0A\x00\x10\x02\x00\x00\x21\x24\xA9\xB4\xAA"
             ),
-            {WEIGHT_KEY: 93.85}
+            {WEIGHT_KEY: 93.85, DISPLAY_UNIT_KEY: 0}
 
         ),
         ("invalid_data", bytearray(b"\x00" * 12), None),
