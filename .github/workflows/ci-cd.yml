@@ -125,22 +125,22 @@ jobs:
                 throw error;
               }
             }
-      - name: Upload to PyPI
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: |
-          twine upload dist/*
-      - name: Wait for PyPI
-        run: |
-          echo "Waiting for package to be available on PyPI..."
-          sleep 120
-      - name: Verify installation from PyPI
-        run: |
-          python -m venv test-env
-          . test-env/bin/activate
-          pip install vitafit_vt701_ble==$VERSION
-          python -c "from vitafit_vt701_ble import VitafitBodyFatScale, WeightUnit; print(VitafitBodyFatScale, WeightUnit)"
+      # - name: Upload to PyPI
+      #   env:
+      #     TWINE_USERNAME: __token__
+      #     TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+      #   run: |
+      #     twine upload dist/*
+      # - name: Wait for PyPI
+      #   run: |
+      #     echo "Waiting for package to be available on PyPI..."
+      #     sleep 120
+      # - name: Verify installation from PyPI
+      #   run: |
+      #     python -m venv test-env
+      #     . test-env/bin/activate
+      #     pip install vitafit_vt701_ble==$VERSION
+      #     python -c "from vitafit_vt701_ble import VitafitBodyFatScale, WeightUnit; print(VitafitBodyFatScale, WeightUnit)"
       - name: Upload Release Assets
         uses: actions/github-script@v6
         with:
